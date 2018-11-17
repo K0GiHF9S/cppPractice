@@ -1,15 +1,17 @@
 #pragma once
 
+template<class F>
 class Caller
 {
+private:
+	F& func_;
 public:
-	template<class F>
-	inline void call(F func)
+	inline void call()
 	{
-		func();
+		func_();
 	}
 
-	inline Caller() = default;
+	inline Caller(F& func) : func_(func) {};
 	inline ~Caller() = default;
 };
 
