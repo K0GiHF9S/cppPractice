@@ -11,11 +11,6 @@ public:
 		;
 	}
 
-	~readLockedObject()
-	{
-		;
-	}
-
 	readLockedObject& operator=(readLockedObject&& u) noexcept = default;
 	readLockedObject(readLockedObject&& u) noexcept = default;
 
@@ -34,11 +29,8 @@ public:
 		;
 	}
 
-	~writeLockedObject()
-	{
-		;
-	}
-
+	writeLockedObject& operator=(const writeLockedObject& u) noexcept = default;
+	writeLockedObject(const writeLockedObject& u) noexcept = default;
 	writeLockedObject& operator=(writeLockedObject&& u) noexcept = default;
 	writeLockedObject(writeLockedObject&& u) noexcept = default;
 
