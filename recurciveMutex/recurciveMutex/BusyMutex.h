@@ -12,7 +12,7 @@ public:
 	}
 	inline bool try_lock() noexcept
 	{
-		return (mtx_.test_and_set(std::memory_order_relaxed));
+		return (!mtx_.test_and_set(std::memory_order_relaxed));
 	}
 	inline void unlock() noexcept
 	{
