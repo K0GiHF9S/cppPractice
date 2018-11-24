@@ -4,18 +4,19 @@
 class BusyMutex
 {
 public:
-	constexpr BusyMutex() noexcept = default;
-	void lock() noexcept
+	inline constexpr BusyMutex() noexcept = default;
+	inline ~BusyMutex() noexcept = default;
+	inline void lock() noexcept
 	{
-		while (mtx_.test_and_set());
+		while (mtx_.test_and_set(std::memory_order_relaxed));
 	}
-	bool try_lock() noexcept
+	inline bool try_lock() noexcept
 	{
-		return (mtx_.test_and_set());
+		return (mtx_.test_and_set(std::memory_order_relaxed));
 	}
-	void unlock() noexcept
+	inline void unlock() noexcept
 	{
-		mtx_.clear();
+		mtx_.clear(std::memory_order_relaxed);
 	}
 private:
 	std::atomic_flag mtx_ = ATOMIC_FLAG_INIT;
